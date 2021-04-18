@@ -1,24 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import Display from "./Display";
+import NumberContext from "./Context";
 // Create a Context
-const { Provider, Consumer } = React.createContext();
 // It returns an object with 2 values:
 // { Provider, Consumer }
-
+function useCounter(initial) {
+  let [counter, setCounter] = useState(initial);
+  const increment = () => setCounter(counter+1);
+  return [counter, increment];
+}
 function App() {
   // Use the Provider to make a value available to all
   // children and grandchildren
+  const [counter, increment] = useCounter(0);
   return (
-    <Provider value={43}>
+    <NumberContext.Provider value={[counter, increment]}>
       <div>
         <Display />
       </div>
-    </Provider>
+    </NumberContext.Provider>
   );
 }
 
-function Display() {
-  // Use the Consumer to grab the value from context
-  // Notice this component didn't get any props!
-  return <Consumer>{(value) => <div>The answer is {value}.</div>}</Consumer>;
-}
 export default App;
