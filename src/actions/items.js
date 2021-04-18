@@ -32,3 +32,4 @@ export function itemsFetchData(url) {
             .catch(() => dispatch(itemsHasErrored(true)));
     };
 }
+
