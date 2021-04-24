@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 function Counter() {
-  let [counter, setCounter] = useState(0);
+  const counter = useSelector((state) => state.value);
+  const dispatch = useDispatch();
   return (
     <div>
-      <button onClick={() => setCounter(counter + 1)}>+</button>
-      <button onClick={() => setCounter(counter - 1)}>-</button>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
       <div>{counter}</div>
     </div>
   );
