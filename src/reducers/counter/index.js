@@ -1,11 +1,11 @@
-function counter(state = { value: 0 }, action) {
-  switch (action.type) {
+function counter(state = { value: 0 }, { type, payload }) {
+  switch (type) {
     case "counter/increment":
-      return { value: state.value + 1 };
+      return { value: state.value + payload };
     case "counter/decrement":
-      return { value: state.value - 1 };
+      return { value: state.value - payload };
     default:
       return state;
   }
 }
-export default counter
+export default counter;
